@@ -17,6 +17,8 @@
     ],
     "rules": {
         "linebreak-style": ["error", "windows"],
+        "space-before-blocks": ["error", "never"],
+        "lines-between-class-members": ["error", "never"],
         "quotes": "off",
         "arrow-body-style": ["error", "always"],
         "import/prefer-default-export": "off",
@@ -29,6 +31,13 @@
               "ts": "never",
               "tsx": "never"
             }
-         ]
+         ],
+         "keyword-spacing": ["error", { "overrides": {
+            "if": { "after": false },
+            "for": { "after": false },
+            "while": { "after": false },
+            "static": { "after": false },
+            "as": { "after": false }
+          } }]
     }
 }
