@@ -19,6 +19,8 @@
         "linebreak-style": ["error", "windows"],
         "space-before-blocks": ["error", "never"],
         "lines-between-class-members": ["error", "never"],
+        "no-unused-vars": "off",
+        "class-methods-use-this": "off",
         "quotes": "off",
         "arrow-body-style": ["error", "as-needed"],
         "import/prefer-default-export": "off",
