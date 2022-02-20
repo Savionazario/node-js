@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { Category } from "../model/category";
+import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { CreateCategoryService } from "../services/CreateCategoryService";
 
 const categoriesRoutes = Router();
 
 // Criando array de nome "categories" e de tipo "Category[]" que é uma classe
-const categories: Category[] = [];
+// const categories: Category[] = []; -> foi la para CategoriesRepository
+const categoriesRepository = new CategoriesRepository();
 
 categoriesRoutes.post("/", (request, response) => {
   const { name, description } = request.body;
@@ -16,20 +18,18 @@ categoriesRoutes.post("/", (request, response) => {
   //   created_at: new Date(),
   // };
 
-  // Criando objeto
-  const category = new Category();
+  // Criando o serviço de createCategory e passando o repositório categoriesRepository
+  const createCategoryService = new CreateCategoryService(categoriesRepository);
 
-  // É passado para o assign dois parâmetros, o primeiro é um objeto(que nesse caso é "category")
-  // e o segundo são os atributos que serão jogados/preenchidos para dentro do objeto
-  Object.assign(category, {
-    name,
-    description,
-    created_at: new Date(),
-  });
+  createCategoryService.execute({ name, description });
 
-  categories.push(category);
+  return response.status(201).send();
+});
 
-  return response.status(201).json({ category });
+categoriesRoutes.get("/", (request, response) => {
+  const all = categoriesRepository.list();
+
+  return response.json(all);
 });
 
 export { categoriesRoutes };

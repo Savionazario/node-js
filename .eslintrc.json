@@ -20,7 +20,7 @@
         "space-before-blocks": ["error", "never"],
         "lines-between-class-members": ["error", "never"],
         "quotes": "off",
-        "arrow-body-style": ["error", "always"],
+        "arrow-body-style": ["error", "as-needed"],
         "import/prefer-default-export": "off",
         "import/extensions": [
             "error",
