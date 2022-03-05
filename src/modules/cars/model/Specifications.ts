@@ -5,7 +5,7 @@ class Specifications{
   description: string;
   created_at: Date;
   id?: string;
-  constructor(){
+  constructor(){ // No momento da instância da classe(new Specifications()) o id é criado
     if(!this.id){
       this.id = uuidV4();
     }

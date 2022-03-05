@@ -2,9 +2,9 @@ import { Category } from "../model/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository{
-  private categories: Category[];
+  private categories: Category[]; // Criando array de categorys
   constructor(){
-    this.categories = [];
+    this.categories = []; // Inicializando o array vazio
   }
   create({ name, description }: ICreateCategoryDTO): void{
     const category = new Category();
