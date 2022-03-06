@@ -20,9 +20,10 @@
         "space-before-blocks": ["error", "never"],
         "lines-between-class-members": ["error", "never"],
         "no-unused-vars": "off",
+        "no-use-before-define": ["error", "never"],
         "class-methods-use-this": "off",
         "quotes": "off",
-        "arrow-body-style": ["error", "as-needed"],
+        "arrow-body-style": ["error", "always"],
         "import/prefer-default-export": "off",
         "import/extensions": [
             "error",

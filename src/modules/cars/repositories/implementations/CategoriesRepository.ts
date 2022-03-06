@@ -1,9 +1,16 @@
-import { Category } from "../model/Category";
-import { ICategoriesRepository, ICreateCategoryDTO } from "./ICategoriesRepository";
+import { Category } from "../../model/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
 
 class CategoriesRepository implements ICategoriesRepository{
   private categories: Category[]; // Criando array de categorys
-  constructor(){
+  private static INSTANCE: CategoriesRepository;
+  public static getInstance(): CategoriesRepository{
+    if(!CategoriesRepository.INSTANCE){
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+    return CategoriesRepository.INSTANCE;
+  }
+  private constructor(){
     this.categories = []; // Inicializando o array vazio
   }
   create({ name, description }: ICreateCategoryDTO): void{
@@ -22,7 +29,7 @@ class CategoriesRepository implements ICategoriesRepository{
     return this.categories;
   }
   findByName(name: string): Category{
-    const category = this.categories.find((categ) => categ.name === name);
+    const category = this.categories.find((categ) => { return categ.name === name; });
     return category;
   }
 }

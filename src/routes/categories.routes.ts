@@ -1,35 +1,18 @@
 import { Router } from "express";
-import { CategoriesRepository } from "../modules/cars/repositories/CategoriesRepository";
-import { CreateCategoryService } from "../modules/cars/useCases/createCategory/CreateCategoryUseCase";
+import { createCategoryController } from "../modules/cars/useCases/createCategory";
+import { listCategoriesController } from "../modules/cars/useCases/ListCategories";
 
 const categoriesRoutes = Router();
 
 // Criando array de nome "categories" e de tipo "Category[]" que é uma classe
 // const categories: Category[] = []; -> foi la para CategoriesRepository
-const categoriesRepository = new CategoriesRepository();
 
 categoriesRoutes.post("/", (request, response) => {
-  const { name, description } = request.body;
-
-  // criando objeto, porém dessa forma o constructor não é chamado
-  // const category: Category = {
-  //   name,
-  //   description,
-  //   created_at: new Date(),
-  // };
-
-  // Criando o serviço de createCategory e passando o repositório categoriesRepository
-  const createCategoryService = new CreateCategoryService(categoriesRepository);
-
-  createCategoryService.execute({ name, description });
-
-  return response.status(201).send();
+  return createCategoryController.handle(request, response);
 });
 
 categoriesRoutes.get("/", (request, response) => {
-  const all = categoriesRepository.list();
-
-  return response.json(all);
+  return listCategoriesController.handle(request, response);
 });
 
 export { categoriesRoutes };
